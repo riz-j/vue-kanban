@@ -57,14 +57,14 @@
 					</v-card>
 				</template>
 			</draggable>
-			<div 
+			<v-card 
 			@click="handleAddNewColumn" 
 			class="add-new-column d-flex align-center" 
 			style="gap: 5px"
 			>
-				<v-icon size="small">mdi-plus-circle-outline</v-icon>
+				<v-icon size="x-small">mdi-plus-circle-outline</v-icon>
 				<span class="text-subtitle-2">Add New Column</span>
-			</div>
+			</v-card>
 		</v-container>
 	</v-main>
 </template>
@@ -155,10 +155,8 @@ const handleDeleteColumn = (columnId) => {
 	}
 
 	.add-new-column {
-		border: 1px dashed white;
-		border-radius: 0.2rem;
+		background-color: #171616;
 		height: fit-content;
 		padding: 7px 10px;
-		opacity: 0.5;
 	}
 </style>
