@@ -7,15 +7,15 @@
 				animation="200"
 				handle=".column-heading"
 			>
-				<template #item="{ element, index }">
-					<v-card :key="element.id" class="kanban-container">
+				<template #item="{ element: column, index }">
+					<v-card :key="column.id" class="kanban-container">
 						<div class="column-heading mb-2 d-flex justify-space-between align-center">
-							<p>{{ element.name }}</p>
-							<v-icon size="small" color="red" @click="handleDeleteColumn(element.id)">mdi-delete-outline</v-icon>
+							<p>{{ column.name }}</p>
+							<v-icon size="small" color="red" @click="handleDeleteColumn(column.id)">mdi-delete-outline</v-icon>
 						</div>
 						<draggable
-							:list="element.items"
-							:id="element.id"
+							:list="column.items"
+							:id="column.id"
 							item-key="id"
 							group="list"
 							tag="ul"
@@ -32,16 +32,16 @@
 							@update="onupdate"
 							@remove="onremove"
 						>
-							<template #item="{ element, index }">
+							<template #item="{ element: color, index }">
 								<div
-									:id="element" 
+									:id="color"
 									:index="index" 
 									class="draggable-card d-flex justify-space-between 
 									align-center v-card v-card--variant-elevated"
 								>
 									<div class="d-flex align-center">
 										<v-icon class="draggable-handle">mdi-drag-vertical</v-icon>
-										<p>{{ element }}</p>
+										<p>{{ color }}</p>
 									</div>
 									<span>
 										<v-icon size="small" style="opacity: 0.4">mdi-dots-vertical</v-icon>
