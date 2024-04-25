@@ -57,6 +57,14 @@
 					</v-card>
 				</template>
 			</draggable>
+			<div 
+			@click="handleAddNewColumn" 
+			class="add-new-column d-flex align-center" 
+			style="gap: 5px"
+			>
+				<v-icon size="small">mdi-plus-circle-outline</v-icon>
+				<span class="text-subtitle-2">Add New Column</span>
+			</div>
 		</v-container>
 	</v-main>
 </template>
@@ -91,6 +99,10 @@ const onchange = () => { console.log("onchange") }
 const onmove = () => { console.log("onmove") }
 const onupdate = () => { console.log("onupdate") }
 const onremove = () => { console.log("onremove") }
+
+const handleAddNewColumn = () => {
+	columns.value = [...columns.value, { id: 3, name: 'New Column', items: [] }];
+}
 
 const handleDeleteColumn = (columnId) => {
 	columns.value = columns.value.filter(column => column.id !== columnId);
@@ -140,5 +152,13 @@ const handleDeleteColumn = (columnId) => {
 
 	.ghost {
 		background-color: darkgreen;
+	}
+
+	.add-new-column {
+		border: 1px dashed white;
+		border-radius: 0.2rem;
+		height: fit-content;
+		padding: 7px 10px;
+		opacity: 0.5;
 	}
 </style>
