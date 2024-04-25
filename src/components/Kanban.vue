@@ -54,6 +54,14 @@
 								</div>
 							</template>
 						</draggable>
+						<div
+						@click="handleAddItem(column.id)" 
+						class="add-new-item d-flex align-center mt-3 mx-1" 
+						style="gap: 5px"
+						>
+							<v-icon size="x-small">mdi-plus-circle-outline</v-icon>
+							<p>Add Item</p>
+						</div>
 					</v-card>
 				</template>
 			</draggable>
@@ -107,6 +115,11 @@ const handleAddNewColumn = () => {
 const handleDeleteColumn = (columnId) => {
 	columns.value = columns.value.filter(column => column.id !== columnId);
 }
+
+const handleAddItem = (columnId) => {
+	const column = columns.value.find(column => column.id === columnId);
+	column.items = [...column.items, ''];
+}
 </script>
 
 <style scoped>
@@ -158,5 +171,11 @@ const handleDeleteColumn = (columnId) => {
 		background-color: #171616;
 		height: fit-content;
 		padding: 7px 10px;
+	}
+
+	.add-new-item {
+		font-size: 0.84rem !important;
+		opacity: 0.8;
+		cursor: pointer;
 	}
 </style>
