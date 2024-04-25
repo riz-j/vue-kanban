@@ -2,10 +2,10 @@
 	<v-main>
 		<v-container class="d-flex" style="gap: 10px">
 			<draggable
-				:list="columns"
-				class="d-flex" 
-				animation="200"
-				handle=".column-heading"
+			:list="columns"
+			class="d-flex" 
+			animation="150"
+			handle=".column-heading"
 			>
 				<template #item="{ element: column, index }">
 					<v-card :key="column.id" class="kanban-container">
@@ -14,30 +14,30 @@
 							<v-icon size="small" color="red" @click="handleDeleteColumn(column.id)">mdi-delete-outline</v-icon>
 						</div>
 						<draggable
-							:list="column.items"
-							:id="column.id"
-							item-key="id"
-							group="list"
-							tag="ul"
-							animation="200"
-							class="sortable-container"
-							chosen-class="chosen"
-							ghost-class="ghost"
-							handle=".draggable-handle"
-							@change="onchange"
-							@start="onstart"
-							@end="onend"
-							@move="onmove"
-							@add="onadd"
-							@update="onupdate"
-							@remove="onremove"
+						:list="column.items"
+						:id="column.id"
+						item-key="id"
+						group="list"
+						tag="ul"
+						animation="150"
+						class="sortable-container"
+						chosen-class="chosen"
+						ghost-class="ghost"
+						handle=".draggable-handle"
+						@change="onchange"
+						@start="onstart"
+						@end="onend"
+						@move="onmove"
+						@add="onadd"
+						@update="onupdate"
+						@remove="onremove"
 						>
 							<template #item="{ element: color, index }">
 								<div
-									:id="color"
-									:index="index" 
-									class="draggable-card d-flex justify-space-between 
-									align-center v-card v-card--variant-elevated"
+								:id="color"
+								:index="index" 
+								class="draggable-card d-flex justify-space-between 
+								align-center v-card v-card--variant-elevated"
 								>
 									<div class="d-flex align-center">
 										<v-icon class="draggable-handle">mdi-drag-vertical</v-icon>
