@@ -1,48 +1,57 @@
 <template>
 	<v-main>
 		<v-container class="d-flex" style="gap: 10px">
-			<v-card v-for="column in columns" :key="column.id" class="kanban-container">
-				<div class="column-heading mb-2 d-flex justify-space-between align-center">
-					<p>{{ column.name }}</p>
-					<v-icon size="small" color="red" @click="handleDeleteColumn(column.id)">mdi-delete-outline</v-icon>
-				</div>
-				<draggable
-					:list="column.items"
-					:id="column.id"
-					item-key="id"
-					group="list"
-					tag="ul"
-					animation="200"
-					class="sortable-container"
-					chosen-class="chosen"
-					ghost-class="ghost"
-					handle=".draggable-handle"
-					@change="onchange"
-					@start="onstart"
-					@end="onend"
-					@move="onmove"
-					@add="onadd"
-					@update="onupdate"
-					@remove="onremove"
-				>
-					<template #item="{ element, index }">
-						<div
-							:id="element" 
-							:index="index" 
-							class="draggable-card d-flex justify-space-between 
-							align-center v-card v-card--variant-elevated"
-						>
-							<div class="d-flex align-center">
-								<v-icon class="draggable-handle">mdi-drag-vertical</v-icon>
-								<p>{{ element }}</p>
-							</div>
-							<span>
-								<v-icon size="small" style="opacity: 0.4">mdi-dots-vertical</v-icon>
-							</span>
+			<draggable
+				:list="columns"
+				class="d-flex" 
+				animation="200"
+				handle=".column-heading"
+			>
+				<template #item="{ element, index }">
+					<v-card :key="element.id" class="kanban-container">
+						<div class="column-heading mb-2 d-flex justify-space-between align-center">
+							<p>{{ element.name }}</p>
+							<v-icon size="small" color="red" @click="handleDeleteColumn(element.id)">mdi-delete-outline</v-icon>
 						</div>
-					</template>
-				</draggable>
-			</v-card>
+						<draggable
+							:list="element.items"
+							:id="element.id"
+							item-key="id"
+							group="list"
+							tag="ul"
+							animation="200"
+							class="sortable-container"
+							chosen-class="chosen"
+							ghost-class="ghost"
+							handle=".draggable-handle"
+							@change="onchange"
+							@start="onstart"
+							@end="onend"
+							@move="onmove"
+							@add="onadd"
+							@update="onupdate"
+							@remove="onremove"
+						>
+							<template #item="{ element, index }">
+								<div
+									:id="element" 
+									:index="index" 
+									class="draggable-card d-flex justify-space-between 
+									align-center v-card v-card--variant-elevated"
+								>
+									<div class="d-flex align-center">
+										<v-icon class="draggable-handle">mdi-drag-vertical</v-icon>
+										<p>{{ element }}</p>
+									</div>
+									<span>
+										<v-icon size="small" style="opacity: 0.4">mdi-dots-vertical</v-icon>
+									</span>
+								</div>
+							</template>
+						</draggable>
+					</v-card>
+				</template>
+			</draggable>
 		</v-container>
 	</v-main>
 </template>
@@ -89,10 +98,12 @@ const handleDeleteColumn = (columnId) => {
 		font-size: 15px;
 		margin: 0px 5px;
 		font-weight: bold;
+		cursor: grabbing;
 	}
 
 	.kanban-container {
 		padding: 10px 7px;
+		margin: 0px 5px;
 		background-color: #171616;
 		min-width: 200px;
 		height: fit-content
@@ -121,7 +132,6 @@ const handleDeleteColumn = (columnId) => {
 
 	.chosen {
 		box-shadow: none;
-		background-color: red;
 	}
 
 	.ghost {
