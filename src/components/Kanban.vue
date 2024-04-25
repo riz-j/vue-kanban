@@ -9,9 +9,14 @@
 			>
 				<template #item="{ element: column, index }">
 					<v-card :key="column.id" class="kanban-container">
-						<div class="column-heading mb-2 d-flex justify-space-between align-center">
+						<div class="column-heading mb-2 d-flex 
+						justify-space-between align-center">
 							<p>{{ column.name }}</p>
-							<v-icon size="small" color="red" @click="handleDeleteColumn(column.id)">mdi-delete-outline</v-icon>
+							<v-icon 
+							size="small" 
+							color="red" 
+							@click="handleDeleteColumn(column.id)"
+							>mdi-delete-outline</v-icon>
 						</div>
 						<draggable
 						:list="column.items"
@@ -58,8 +63,7 @@
 
 <script setup>
 import draggable from 'vuedraggable';
-import { ref } from 'vue';
-import { computed } from 'vue';
+import { ref, computed } from 'vue';
 
 const columns = ref([
 	{
@@ -72,14 +76,14 @@ const columns = ref([
 		name: 'Second Column',
 		items: ['orange', 'purple', 'cyan']
 	}
-])
+]);
 
-const allItems = computed(() => columns.value.flatMap(column => column.items))
+const allItems = computed(() => columns.value.flatMap(column => column.items));
 
 const onadd = (e) => { 
-	console.log("onadd")
+	console.log("onadd");
 	console.log(e.item);
-	console.log(`The ${e.item.id} card moved from column ${e.from.id} to column ${e.to.id}`) 
+	console.log(`The ${e.item.id} card moved from column ${e.from.id} to column ${e.to.id}`);
 }
 const onstart = (e) => { console.log("onstart") }
 const onend = (e) => { console.log("onend", e.item) }
