@@ -1,10 +1,10 @@
 <template>
 	<v-main>
-		<v-container class="d-flex" style="gap: 10px">
+		<v-container class="d-flex ga-3">
 			<draggable
 			:list="columns"
 			class="d-flex" 
-			animation="150"
+			animation="200"
 			handle=".column-heading"
 			>
 				<template #item="{ element: column, index }">
@@ -56,8 +56,7 @@
 						</draggable>
 						<div
 						@click="handleAddItem(column.id)" 
-						class="add-new-item d-flex align-center mt-3 mx-1" 
-						style="gap: 5px"
+						class="add-new-item d-flex align-center ga-1 mt-3 mx-1"
 						>
 							<v-icon size="x-small">mdi-plus-circle-outline</v-icon>
 							<p>Add Item</p>
@@ -67,8 +66,7 @@
 			</draggable>
 			<v-card 
 			@click="handleAddNewColumn" 
-			class="add-new-column d-flex align-center" 
-			style="gap: 5px"
+			class="add-new-column d-flex align-center ga-1"
 			>
 				<v-icon size="x-small">mdi-plus-circle-outline</v-icon>
 				<span class="text-subtitle-2">Add New Column</span>
