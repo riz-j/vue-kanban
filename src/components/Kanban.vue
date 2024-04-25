@@ -11,7 +11,7 @@
 					<v-card :key="column.id" class="kanban-container">
 						<div class="column-heading mb-2 d-flex 
 						justify-space-between align-center">
-							<p>{{ column.name }}</p>
+							<input type="text" v-model="column.name">	
 							<v-icon 
 							size="small" 
 							color="red" 
@@ -46,7 +46,7 @@
 								>
 									<div class="d-flex align-center">
 										<v-icon class="draggable-handle">mdi-drag-vertical</v-icon>
-										<p>{{ color }}</p>
+										<input type="text" v-model="column.items[index]">
 									</div>
 									<span>
 										<v-icon size="small" style="opacity: 0.4">mdi-dots-vertical</v-icon>
@@ -80,15 +80,16 @@
 <script setup>
 import draggable from 'vuedraggable';
 import { ref, computed } from 'vue';
+import { v4 as uuidv4 } from 'uuid';
 
 const columns = ref([
 	{
-		id: 1,
+		id: 'b8a1d920-35e2-444d-a7f2-be2c064eb31c',
 		name: 'First Column',
 		items: ['red', 'green', 'blue']
 	},
 	{
-		id: 2,
+		id: '627a641f-81b9-4835-9072-257267432bd5',
 		name: 'Second Column',
 		items: ['orange', 'purple', 'cyan']
 	}
@@ -109,7 +110,7 @@ const onupdate = () => { console.log("onupdate") }
 const onremove = () => { console.log("onremove") }
 
 const handleAddNewColumn = () => {
-	columns.value = [...columns.value, { id: 3, name: 'New Column', items: [] }];
+	columns.value = [...columns.value, { id: uuidv4(), name: 'New Column', items: [] }];
 }
 
 const handleDeleteColumn = (columnId) => {
@@ -164,7 +165,12 @@ const handleAddItem = (columnId) => {
 	}
 
 	.ghost {
-		background-color: darkgreen;
+		background-color: green;
+		border: 0;
+		border-radius: 0;
+		padding: 0;
+		height: 4px !important;
+		font-size: 1px !important;
 	}
 
 	.add-new-column {
