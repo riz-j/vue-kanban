@@ -11,7 +11,7 @@
 					<v-card :key="column.id" class="kanban-container">
 						<div class="column-heading mb-2 d-flex 
 						justify-space-between align-center">
-							<input type="text" v-model="column.name">	
+							<input :id="column.id" type="text" v-model="column.name">	
 							<v-icon 
 							size="small" 
 							color="red" 
@@ -37,9 +37,9 @@
 						@update="onupdate"
 						@remove="onremove"
 						>
-							<template #item="{ element: color, index }">
+							<template #item="{ element: task, index }">
 								<div
-								:id="color"
+								:id="task"
 								:index="index" 
 								class="draggable-card d-flex justify-space-between 
 								align-center v-card v-card--variant-elevated"
@@ -83,13 +83,18 @@ import { v4 as uuidv4 } from 'uuid';
 const columns = ref([
 	{
 		id: 'b8a1d920-35e2-444d-a7f2-be2c064eb31c',
-		name: 'First Column',
-		items: ['red', 'green', 'blue']
+		name: 'Ready to Start',
+		items: ['Research', 'Planning', 'Preparation']
 	},
 	{
 		id: '627a641f-81b9-4835-9072-257267432bd5',
-		name: 'Second Column',
-		items: ['orange', 'purple', 'cyan']
+		name: 'In Progress',
+		items: ['Execution', 'Testing', 'Analysis']
+	},
+	{
+		id: '48e0733a-5eec-45a2-bfbf-0a8a82ff1f28',
+		name: 'Completed',
+		items: ['Review', 'Approval']
 	}
 ]);
 
