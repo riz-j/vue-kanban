@@ -127,6 +127,10 @@ const handleAddItem = (columnId) => {
 </script>
 
 <style scoped>
+	input {
+		outline: none;
+	}
+
 	.column-heading {
 		font-size: 15px;
 		margin: 0px 5px;
